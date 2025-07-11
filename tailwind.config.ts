@@ -52,6 +52,13 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				formation: {
+					orange: 'hsl(var(--formation-orange))',
+					'orange-light': 'hsl(var(--formation-orange-light))',
+					'orange-dark': 'hsl(var(--formation-orange-dark))',
+					green: 'hsl(var(--formation-green))',
+					blue: 'hsl(var(--formation-blue))'
+				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
