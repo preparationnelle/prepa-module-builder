@@ -2,6 +2,7 @@ import { FormationButton } from "@/components/ui/formation-button"
 import { Card, CardContent } from "@/components/ui/card"
 import { ArrowLeft, CheckCircle, Lightbulb, Book } from "lucide-react"
 import { useNavigate, useParams } from "react-router-dom"
+import { SommesEtProduitsContent } from "@/components/formations/MathContent"
 
 const ModulePage = () => {
   const navigate = useNavigate()
@@ -112,9 +113,11 @@ const ModulePage = () => {
           ))}
         </div>
 
+        <SommesEtProduitsContent />
+
         <div className="mt-8 text-center">
           <FormationButton size="lg">
-            Commencer le module
+            Continuer vers les exercices
           </FormationButton>
         </div>
       </div>
