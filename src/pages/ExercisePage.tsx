@@ -194,6 +194,92 @@ T_n &= U_{2n+1}-S_n \\
           </CardContent>
         </Card>
 
+        {/* Exercice 1.02 */}
+        <Card className="border border-formation-orange/20 mb-6">
+          <CardHeader className="pb-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 bg-formation-green rounded-full flex items-center justify-center text-white font-bold text-sm">
+                  2
+                </div>
+                <h2 className="text-xl font-semibold text-foreground">Exercice 1.02</h2>
+                <Badge variant="secondary" className="bg-formation-green/10 text-formation-green border-formation-green/20">
+                  Facile
+                </Badge>
+              </div>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-6">
+              {/* Énoncé */}
+              <div>
+                <h3 className="text-lg font-semibold text-foreground mb-4">Énoncé</h3>
+                <div className="space-y-4 text-foreground">
+                  <p>Déterminer <InlineMath math="\forall n\in \mathbb{N}^{\ast}" />,</p>
+                  <div className="my-4">
+                    <BlockMath math="A_n = \sum_{k=1}^{n} \frac{1}{k(k+1)}" />
+                  </div>
+                </div>
+              </div>
+
+              {/* Corrigé avec accordéon */}
+              <Accordion type="single" collapsible className="w-full">
+                <AccordionItem value="solution-2" className="border border-formation-orange/20 rounded-lg px-4">
+                  <AccordionTrigger className="text-lg font-semibold text-formation-orange hover:text-formation-orange-dark">
+                    Voir le corrigé détaillé
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    <div className="space-y-6 pt-4">
+                      <div>
+                        <h4 className="text-lg font-semibold text-foreground mb-3">Étape 1 — Mise en évidence d'une somme télescopique</h4>
+                        <div className="space-y-3 text-foreground">
+                          <p>Pour tout <InlineMath math="k\in \mathbb{N}^{\ast}" />, on remarque que</p>
+                          <BlockMath math="\frac{1}{k(k+1)} = \frac{1}{k} - \frac{1}{k+1}" />
+                        </div>
+                      </div>
+
+                      <div>
+                        <h4 className="text-lg font-semibold text-foreground mb-3">Étape 2 — Application à la somme</h4>
+                        <div className="space-y-3 text-foreground">
+                          <p>Ainsi, pour tout <InlineMath math="n\ge1" /> :</p>
+                          <BlockMath math="\begin{align}
+A_n &= \sum_{k=1}^{n} \frac{1}{k(k+1)} = \sum_{k=1}^{n} \left(\frac{1}{k} - \frac{1}{k+1}\right) \\
+&= \underbrace{\sum_{k=1}^{n} \frac{1}{k}}_{\text{série harmonique partielle}} - \underbrace{\sum_{k=1}^{n} \frac{1}{k+1}}_{\text{même somme décalée}}
+\end{align}" />
+                        </div>
+                      </div>
+
+                      <div>
+                        <h4 className="text-lg font-semibold text-foreground mb-3">Étape 3 — Télescopage</h4>
+                        <div className="space-y-3 text-foreground">
+                          <p>En décalant l'indice dans la deuxième somme <InlineMath math="(i=k+1)" /> :</p>
+                          <BlockMath math="\sum_{k=1}^{n} \frac{1}{k+1} = \sum_{i=2}^{n+1} \frac{1}{i}" />
+                          
+                          <p>On obtient donc</p>
+                          <BlockMath math="\begin{align}
+A_n &= \left(1 + \sum_{k=2}^{n} \frac{1}{k}\right) - \left(\sum_{i=2}^{n} \frac{1}{i} + \frac{1}{n+1}\right) \\
+&= 1 - \frac{1}{n+1}
+\end{align}" />
+                        </div>
+                      </div>
+
+                      <div>
+                        <h4 className="text-lg font-semibold text-foreground mb-3">Conclusion</h4>
+                        <div className="space-y-3 text-foreground">
+                          <p>On a finalement</p>
+                          <div className="bg-formation-green/10 border border-formation-green/20 rounded-lg p-4">
+                            <BlockMath math="\boxed{\forall n\in\mathbb{N}^{\ast},\; A_n = 1 - \frac{1}{n+1}}" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            </div>
+          </CardContent>
+        </Card>
+
         <div className="mt-8 text-center">
           <FormationButton size="lg">
             Exercice suivant
