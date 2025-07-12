@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import Formation from "./pages/Formation";
 import MathsFormation from "./pages/MathsFormation";
 import ModulePage from "./pages/ModulePage";
+import ExercisePage from "./pages/ExercisePage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -21,6 +22,7 @@ const App = () => (
           <Route path="/" element={<Formation />} />
           <Route path="/formation/maths" element={<MathsFormation />} />
           <Route path="/formation/maths/module/:moduleId" element={<ModulePage />} />
+          <Route path="/formation/maths/module/:moduleId/exercises" element={<ExercisePage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

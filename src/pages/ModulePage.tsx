@@ -123,7 +123,10 @@ const ModulePage = () => {
         </Card>
 
         <div className="mt-8 text-center">
-          <FormationButton size="lg">
+          <FormationButton 
+            size="lg"
+            onClick={() => navigate(`/formation/maths/module/${moduleId}/exercises`)}
+          >
             Continuer vers les exercices
           </FormationButton>
         </div>
