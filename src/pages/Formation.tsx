@@ -16,16 +16,7 @@ const Formation = () => {
       icon: <Calculator className="w-6 h-6" />,
       available: true
     },
-    {
-      id: "economie",
-      title: "Formation d'Économie",
-      description: "Maîtrise complète des concepts économiques pour réussir les épreuves ECG",
-      duration: "12-15 heures", 
-      level: "Intermédiaire",
-      modules: 6,
-      icon: <TrendingUp className="w-6 h-6" />,
-      available: false
-    }
+ 
   ]
 
   const handleFormationClick = (formationId: string) => {
