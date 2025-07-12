@@ -4,6 +4,7 @@ import { ArrowLeft, CheckCircle, Lightbulb, Book } from "lucide-react";
 import { useNavigate, useParams } from "react-router-dom";
 import { SommesEtProduitsContent } from "@/components/formations/MathContent";
 import { FlashCardQuiz } from "@/components/formations/FlashCardQuiz";
+import { FormulasDropdown } from "@/components/formations/FormulasDropdown";
 const ModulePage = () => {
   const navigate = useNavigate();
   const {
@@ -79,6 +80,8 @@ const ModulePage = () => {
             </Card>)}
         </div>
 
+        <FormulasDropdown />
+        
         <SommesEtProduitsContent />
 
         <Card className="border border-formation-orange/20 mt-8">
