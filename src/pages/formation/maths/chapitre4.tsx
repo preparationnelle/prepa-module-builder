@@ -77,7 +77,8 @@ const Chapitre4 = () => (
           {chapitre4Latex}
         </pre>
         <p className="text-muted-foreground mt-2 text-sm">
-          (Contenu affiché tel quel : fichier LaTeX original, non rendu en mathématiques. Si tu veux un vrai rendu mathématique et PDF, demande-moi l’intégration d’un composant LaTeX.)
+          (Contenu affiché tel quel : fichier LaTeX original, non rendu en mathématiques.<br />
+          Si tu veux un vrai rendu visuel des formules, demande-moi d'intégrer un composant LaTeX !)
         </p>
       </div>
     </div>
