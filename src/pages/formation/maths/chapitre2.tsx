@@ -1,3 +1,4 @@
+
 "use client"
 
 import { useNavigate } from "react-router-dom"
@@ -7,8 +8,6 @@ import {
   Clock,
   BookOpen,
 } from "lucide-react"
-import Module02 from "@/components/modules/Module02"
-import FlashCards from "@/components/FlashCards"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Card, CardContent } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
@@ -20,7 +19,7 @@ const Chapter02 = () => {
   return (
     <div className="min-h-screen bg-background pb-16">
       <div className="container mx-auto px-4 py-10 max-w-5xl">
-        {/* fil d’Ariane */}
+        {/* fil d'Ariane */}
         <nav className="flex items-center text-sm text-muted-foreground mb-6">
           <button onClick={() => navigate("/")} className="hover:underline flex items-center">
             Accueil
@@ -100,13 +99,13 @@ const Chapter02 = () => {
 
             <TabsContent value="cours">
               <div className="p-6">
-                <Module02 />
+                <p className="text-muted-foreground">Contenu du cours à venir...</p>
               </div>
             </TabsContent>
 
             <TabsContent value="flashcards">
               <div className="p-6">
-                <FlashCards moduleType="coefficients" />
+                <p className="text-muted-foreground">Flashcards à venir...</p>
               </div>
             </TabsContent>
           </Tabs>
@@ -118,7 +117,7 @@ const Chapter02 = () => {
             <h2 className="text-xl font-semibold text-formation-blue">À retenir</h2>
             <Separator />
             <ul className="list-disc pl-6 text-foreground space-y-2">
-              <li>Une permutation d’un ensemble de n éléments correspond à n ! arrangements possibles.</li>
+              <li>Une permutation d'un ensemble de n éléments correspond à n ! arrangements possibles.</li>
               <li>La factorielle (n !) est la base du calcul des permutations et combinaisons.</li>
               <li>Les coefficients binomiaux comptent le nombre de façons de choisir k éléments parmi n.</li>
               <li>
@@ -131,7 +130,7 @@ const Chapter02 = () => {
 
         {/* navigation chapitres */}
         <div className="flex justify-between">
-          <FormationButton variant="ghost" onClick={() => navigate("/formation/maths/chapitre1")}>
+          <FormationButton variant="outline" onClick={() => navigate("/formation/maths/chapitre1")}>
             <ArrowLeft className="w-4 h-4 mr-2" />
             Chapitre précédent
           </FormationButton>
