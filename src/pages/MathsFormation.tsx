@@ -1,42 +1,61 @@
 import { ModuleCard } from "@/components/formations/ModuleCard"
 import { FormationButton } from "@/components/ui/formation-button"
-import { ArrowLeft, Book, Calculator, TrendingUp, BarChart3, PieChart, FileText, Target } from "lucide-react"
+import {
+  ArrowLeft,
+  Book,
+  Calculator,
+  TrendingUp,
+  BarChart3,
+  PieChart,
+  FileText,
+  Target,
+} from "lucide-react"
 import { useNavigate } from "react-router-dom"
 
 const MathsFormation = () => {
   const navigate = useNavigate()
 
-  // Module 0 conservé
-  const module0 = {
-    moduleNumber: 0,
-    title: "Les Fondamentaux",
-    description: "Variables, fonctions, équations et structures de base. Les bases essentielles pour débuter en mathématiques ECG.",
-    topics: [
-      "Calcul algébrique et équations",
-      "Fonctions et leurs propriétés", 
-      "Systèmes d'équations",
-      "Inégalités et intervalles"
-    ],
-    available: true,
-    icon: <Calculator className="w-6 h-6" />
-  }
+  // Module 0
+  const modules = [
+    {
+      moduleNumber: 0,
+      title: "Les Fondamentaux",
+      description:
+        "Variables, fonctions, équations et structures de base. Les bases essentielles pour débuter en mathématiques ECG.",
+      topics: [
+        "Calcul algébrique et équations",
+        "Fonctions et leurs propriétés",
+        "Systèmes d'équations",
+        "Inégalités et intervalles",
+      ],
+      available: true,
+      icon: <Calculator className="w-6 h-6" />,
+    },
+  ]
 
+  // Liste chapitres 1 à 20
+  const chapitres = Array.from({ length: 20 }, (_, i) => ({
+    num: i + 1,
+    url: `/formation/maths/chapitre${i + 1}`,
+    title: `Chapitre ${i + 1}`,
+  }))
+
+  // Clique sur Module 0
   const handleModuleClick = (moduleNumber: number) => {
     if (moduleNumber === 0) {
       navigate("/formation/maths/module/0")
     }
   }
 
-  // Liste des chapitres (1 à 20)
-  const chapitres = Array.from({ length: 20 }, (_, i) => ({
-    num: i + 1,
-    url: `/formation/maths/chapitre${i + 1}`,
-    title: `Chapitre ${i + 1}`
-  }))
+  // Clique sur un chapitre
+  const handleChapitreClick = (num: number) => {
+    navigate(`/formation/maths/chapitre${num}`)
+  }
 
   return (
     <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-8 max-w-6xl">
+        {/* Bouton retour */}
         <div className="mb-8">
           <FormationButton
             variant="outline"
@@ -58,7 +77,7 @@ const MathsFormation = () => {
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-6">
               Formation complète en Mathématiques pour les concours des Grandes Écoles de Commerce
             </p>
-            
+
             <div className="flex flex-wrap justify-center gap-4 mb-8">
               <span className="inline-flex items-center gap-1 px-3 py-1 bg-secondary rounded-full text-sm font-medium">
                 Débutant à avancé
@@ -73,41 +92,84 @@ const MathsFormation = () => {
           </div>
         </div>
 
-        {/* Module 0 affiché via ModuleCard */}
-        <div className="mb-8">
+        {/* Bloc module 0 */}
+        <div className="mb-12">
           <h2 className="text-2xl font-semibold text-foreground mb-6 flex items-center gap-2">
             <Book className="w-6 h-6 text-formation-orange" />
             Module 0 : Les Fondamentaux
           </h2>
-          <ModuleCard
-            key={module0.moduleNumber}
-            moduleNumber={module0.moduleNumber}
-            title={module0.title}
-            description={module0.description}
-            topics={module0.topics}
-            available={module0.available}
-            icon={module0.icon}
-            onClick={() => handleModuleClick(module0.moduleNumber)}
-          />
+          <div className="space-y-6">
+            {modules.map((module) => (
+              <ModuleCard
+                key={module.moduleNumber}
+                moduleNumber={module.moduleNumber}
+                title={module.title}
+                description={module.description}
+                topics={module.topics}
+                available={module.available}
+                icon={module.icon}
+                onClick={() => handleModuleClick(module.moduleNumber)}
+              />
+            ))}
+          </div>
         </div>
 
-        {/* Liste des chapitres */}
-        <div className="mb-8">
+        {/* Section chapitres */}
+        <div className="mb-12">
           <h2 className="text-2xl font-semibold text-foreground mb-6 flex items-center gap-2">
             <FileText className="w-6 h-6 text-formation-orange" />
             Chapitres du cours
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {chapitres.map((chapitre) => (
-              <button
+              <div
                 key={chapitre.num}
-                onClick={() => navigate(chapitre.url)}
-                className="w-full bg-card border border-muted rounded-lg p-4 hover:bg-accent transition flex flex-col items-center"
+                className="bg-card border border-formation-orange/20 rounded-lg p-6 flex flex-col items-center cursor-pointer hover:bg-formation-orange/5 transition"
+                onClick={() => handleChapitreClick(chapitre.num)}
+                role="button"
+                tabIndex={0}
+                onKeyPress={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    handleChapitreClick(chapitre.num)
+                  }
+                }}
               >
-                <span className="text-2xl font-bold mb-2">{chapitre.title}</span>
-                <span className="text-muted-foreground">Accéder au chapitre</span>
-              </button>
+                <div className="w-12 h-12 mb-4 bg-formation-orange/10 rounded-full flex items-center justify-center">
+                  <Book className="w-6 h-6 text-formation-orange" />
+                </div>
+                <div className="flex-1 flex flex-col items-center">
+                  <h3 className="text-lg font-bold text-foreground mb-2">
+                    {chapitre.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground">
+                    Accéder au chapitre
+                  </p>
+                </div>
+              </div>
             ))}
+          </div>
+        </div>
+
+        {/* Bloc Exercices (conservé, mais facultatif) */}
+        <div className="mb-8">
+          <h2 className="text-2xl font-semibold text-foreground mb-6 flex items-center gap-2">
+            <Target className="w-6 h-6 text-formation-orange" />
+            Exercices
+          </h2>
+
+          <div className="bg-card border border-formation-orange/20 rounded-lg p-6">
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 bg-formation-green rounded-lg flex items-center justify-center text-white">
+                <FileText className="w-6 h-6" />
+              </div>
+              <div className="flex-1">
+                <h3 className="text-lg font-semibold text-foreground mb-1">Module 1</h3>
+                <h4 className="text-formation-orange font-medium mb-2">Les Applications</h4>
+              </div>
+              <div className="bg-red-100 text-red-800 px-2 py-1 rounded text-sm font-medium">
+                Accès restreint
+              </div>
+            </div>
           </div>
         </div>
       </div>
