@@ -6,66 +6,33 @@ import { useNavigate } from "react-router-dom"
 const MathsFormation = () => {
   const navigate = useNavigate()
 
-  const modules = [
-    {
-      moduleNumber: 0,
-      title: "Les Fondamentaux",
-      description: "Variables, fonctions, équations et structures de base. Les bases essentielles pour débuter en mathématiques ECG.",
-      topics: [
-        "Calcul algébrique et équations",
-        "Fonctions et leurs propriétés", 
-        "Systèmes d'équations",
-        "Inégalités et intervalles"
-      ],
-      available: true,
-      icon: <Calculator className="w-6 h-6" />
-    },
-    {
-      moduleNumber: 1,
-      title: "Analyse et Dérivation",
-      description: "Maîtrise des dérivées, étude de fonctions et optimisation pour les problèmes économiques.",
-      topics: [
-        "Calcul de dérivées",
-        "Étude de fonctions",
-        "Optimisation libre",
-        "Applications économiques"
-      ],
-      available: false,
-      icon: <TrendingUp className="w-6 h-6" />
-    },
-    {
-      moduleNumber: 2,
-      title: "Probabilités",
-      description: "Variables aléatoires, lois de probabilité et applications aux problèmes de gestion.",
-      topics: [
-        "Variables aléatoires discrètes",
-        "Lois usuelles (binomiale, Poisson)",
-        "Espérance et variance",
-        "Applications en économie"
-      ],
-      available: false,
-      icon: <PieChart className="w-6 h-6" />
-    },
-    {
-      moduleNumber: 3,
-      title: "Statistiques",
-      description: "Analyse statistique descriptive et inférentielle pour l'interprétation de données économiques.",
-      topics: [
-        "Statistiques descriptives",
-        "Corrélation et régression",
-        "Tests d'hypothèses",
-        "Intervalles de confiance"
-      ],
-      available: false,
-      icon: <BarChart3 className="w-6 h-6" />
-    }
-  ]
+  // Module 0 conservé
+  const module0 = {
+    moduleNumber: 0,
+    title: "Les Fondamentaux",
+    description: "Variables, fonctions, équations et structures de base. Les bases essentielles pour débuter en mathématiques ECG.",
+    topics: [
+      "Calcul algébrique et équations",
+      "Fonctions et leurs propriétés", 
+      "Systèmes d'équations",
+      "Inégalités et intervalles"
+    ],
+    available: true,
+    icon: <Calculator className="w-6 h-6" />
+  }
 
   const handleModuleClick = (moduleNumber: number) => {
     if (moduleNumber === 0) {
       navigate("/formation/maths/module/0")
     }
   }
+
+  // Liste des chapitres (1 à 20)
+  const chapitres = Array.from({ length: 20 }, (_, i) => ({
+    num: i + 1,
+    url: `/formation/maths/chapitre${i + 1}`,
+    title: `Chapitre ${i + 1}`
+  }))
 
   return (
     <div className="min-h-screen bg-background">
@@ -106,47 +73,41 @@ const MathsFormation = () => {
           </div>
         </div>
 
+        {/* Module 0 affiché via ModuleCard */}
         <div className="mb-8">
           <h2 className="text-2xl font-semibold text-foreground mb-6 flex items-center gap-2">
             <Book className="w-6 h-6 text-formation-orange" />
-            Cours
+            Module 0 : Les Fondamentaux
           </h2>
-          
-          <div className="space-y-6">
-            {modules.map((module) => (
-              <ModuleCard
-                key={module.moduleNumber}
-                moduleNumber={module.moduleNumber}
-                title={module.title}
-                description={module.description}
-                topics={module.topics}
-                available={module.available}
-                icon={module.icon}
-                onClick={() => handleModuleClick(module.moduleNumber)}
-              />
-            ))}
-          </div>
+          <ModuleCard
+            key={module0.moduleNumber}
+            moduleNumber={module0.moduleNumber}
+            title={module0.title}
+            description={module0.description}
+            topics={module0.topics}
+            available={module0.available}
+            icon={module0.icon}
+            onClick={() => handleModuleClick(module0.moduleNumber)}
+          />
         </div>
 
+        {/* Liste des chapitres */}
         <div className="mb-8">
           <h2 className="text-2xl font-semibold text-foreground mb-6 flex items-center gap-2">
-            <Target className="w-6 h-6 text-formation-orange" />
-            Exercices
+            <FileText className="w-6 h-6 text-formation-orange" />
+            Chapitres du cours
           </h2>
-          
-          <div className="bg-card border border-formation-orange/20 rounded-lg p-6">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 bg-formation-green rounded-lg flex items-center justify-center text-white">
-                <FileText className="w-6 h-6" />
-              </div>
-              <div className="flex-1">
-                <h3 className="text-lg font-semibold text-foreground mb-1">Module 1</h3>
-                <h4 className="text-formation-orange font-medium mb-2">Les Applications</h4>
-              </div>
-              <div className="bg-red-100 text-red-800 px-2 py-1 rounded text-sm font-medium">
-                Accès restreint
-              </div>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {chapitres.map((chapitre) => (
+              <button
+                key={chapitre.num}
+                onClick={() => navigate(chapitre.url)}
+                className="w-full bg-card border border-muted rounded-lg p-4 hover:bg-accent transition flex flex-col items-center"
+              >
+                <span className="text-2xl font-bold mb-2">{chapitre.title}</span>
+                <span className="text-muted-foreground">Accéder au chapitre</span>
+              </button>
+            ))}
           </div>
         </div>
       </div>
