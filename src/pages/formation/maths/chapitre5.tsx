@@ -1,11 +1,10 @@
+
 import { BookOpen, Clock, ArrowLeft } from "lucide-react"
 import { useNavigate } from "react-router-dom"
-import Module02 from "@/components/modules/Module02"
-import FlashCards from "@/components/FlashCards"
 import { Card, CardContent } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 
-const PageChapitre2 = () => {
+const Chapitre5 = () => {
   const navigate = useNavigate()
 
   return (
@@ -22,10 +21,10 @@ const PageChapitre2 = () => {
           </button>
 
           <h1 className="text-3xl font-bold text-foreground mb-2">
-            Chapitre 2 – Coefficients binomiaux
+            Chapitre 5
           </h1>
           <p className="text-muted-foreground mb-4">
-            Permutations, factorielles et formule du binôme
+            Contenu du chapitre 5
           </p>
           <div className="flex items-center text-sm text-muted-foreground">
             <Clock className="w-4 h-4 mr-2" />
@@ -35,18 +34,11 @@ const PageChapitre2 = () => {
 
         <Separator className="my-6" />
 
-        {/* Cours complet */}
+        {/* Contenu principal */}
         <Card className="mb-10 border border-muted">
           <CardContent className="p-6">
-            <Module02 />
-          </CardContent>
-        </Card>
-
-        {/* Flashcards */}
-        <Card className="mb-10 border border-muted">
-          <CardContent className="p-6">
-            <h2 className="text-xl font-semibold mb-4">Flashcards</h2>
-            <FlashCards moduleType="coefficients" />
+            <h2 className="text-xl font-semibold mb-4">Cours</h2>
+            <p className="text-muted-foreground">Contenu du cours à venir...</p>
           </CardContent>
         </Card>
 
@@ -56,10 +48,9 @@ const PageChapitre2 = () => {
             <h2 className="text-xl font-semibold text-formation-blue">À retenir</h2>
             <Separator />
             <ul className="list-disc pl-5 space-y-2 text-foreground">
-              <li>Une permutation d’un ensemble de n éléments correspond à n ! arrangements possibles.</li>
-              <li>La factorielle (n !) est la base du calcul des permutations et combinaisons.</li>
-              <li>Les coefficients binomiaux comptent le nombre de façons de choisir k éléments parmi n.</li>
-              <li>Formule du binôme : (a + b)<sup>n</sup> = Σ<sub>k=0</sub><sup>n</sup> C(n,k)a<sup>k</sup>b<sup>n−k</sup></li>
+              <li>Point important 1</li>
+              <li>Point important 2</li>
+              <li>Point important 3</li>
             </ul>
           </CardContent>
         </Card>
@@ -68,4 +59,4 @@ const PageChapitre2 = () => {
   )
 }
 
-export default PageChapitre2
+export default Chapitre5
