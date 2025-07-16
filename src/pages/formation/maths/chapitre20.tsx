@@ -32,6 +32,106 @@ const MathSection = ({ title, subsections }: MathSectionProps) => (
   </Card>
 )
 
+// Flashcards pour Applications linéaires
+const applicationsLineairesCards = [
+  {
+    id: 1,
+    question: "Définition d'une application linéaire f : E → F",
+    answer: "f(x+y) = f(x) + f(y) \\text{ et } f(\\lambda x) = \\lambda f(x)",
+    isBlock: true
+  },
+  {
+    id: 2,
+    question: "Qu'est-ce qu'une forme linéaire ?",
+    answer: "\\text{Application de } E \\text{ dans } \\mathbb{R} \\text{, ensemble } \\mathcal{L}(E,\\mathbb{R})",
+    isBlock: true
+  },
+  {
+    id: 3,
+    question: "Qu'est-ce qu'un endomorphisme ?",
+    answer: "\\text{Application de } E \\text{ dans } E \\text{, espace } \\mathcal{L}(E)",
+    isBlock: true
+  },
+  {
+    id: 4,
+    question: "Qu'est-ce qu'un isomorphisme ?",
+    answer: "\\text{Application linéaire bijective de } E \\text{ vers } F",
+    isBlock: true
+  },
+  {
+    id: 5,
+    question: "Image d'une combinaison linéaire par f",
+    answer: "f\\left(\\sum_{i=1}^{p} \\alpha_i x_i\\right) = \\sum_{i=1}^{p} \\alpha_i f(x_i)",
+    isBlock: true
+  },
+  {
+    id: 6,
+    question: "Condition d'égalité de deux applications linéaires",
+    answer: "f = g \\Leftrightarrow \\forall i \\in \\{1,\\ldots,n\\}, f(e_i) = g(e_i)",
+    isBlock: true
+  },
+  {
+    id: 7,
+    question: "Si f ∈ L(E,F) et g ∈ L(F,G), alors g∘f appartient à quel ensemble ?",
+    answer: "g \\circ f \\in \\mathcal{L}(E,G)",
+    isBlock: true
+  },
+  {
+    id: 8,
+    question: "Inverse de la composition (g∘f)⁻¹",
+    answer: "(g \\circ f)^{-1} = f^{-1} \\circ g^{-1}",
+    isBlock: true
+  },
+  {
+    id: 9,
+    question: "Binôme de Newton fonctionnel (si u et v commutent)",
+    answer: "(u+v)^p = \\sum_{k=0}^{p} \\binom{p}{k} u^{p-k} \\circ v^k",
+    isBlock: true
+  },
+  {
+    id: 10,
+    question: "Définition de Q(u) pour un polynôme Q et un endomorphisme u",
+    answer: "Q(u) = \\sum_{k=0}^{r} q_k u^k \\text{ si } Q(x) = \\sum_{k=0}^{r} q_k x^k",
+    isBlock: true
+  },
+  {
+    id: 11,
+    question: "Qu'est-ce qu'un polynôme annulateur de u ?",
+    answer: "\\text{Polynôme non nul } Q \\text{ tel que } Q(u) = 0",
+    isBlock: true
+  },
+  {
+    id: 12,
+    question: "Définition du noyau de f",
+    answer: "\\ker f = \\{x \\in E \\mid f(x) = 0_F\\}",
+    isBlock: true
+  },
+  {
+    id: 13,
+    question: "Condition d'injectivité d'une application linéaire",
+    answer: "f \\text{ est injectif} \\Leftrightarrow \\ker f = \\{0_E\\}",
+    isBlock: true
+  },
+  {
+    id: 14,
+    question: "Définition de l'image de f",
+    answer: "\\text{Im } f = \\{y \\in F \\mid \\exists x \\in E, y = f(x)\\}",
+    isBlock: true
+  },
+  {
+    id: 15,
+    question: "Condition de surjectivité d'une application linéaire",
+    answer: "f \\text{ est surjectif} \\Leftrightarrow \\text{Im } f = F",
+    isBlock: true
+  },
+  {
+    id: 16,
+    question: "Qu'est-ce qu'un sous-espace stable par u ?",
+    answer: "F \\text{ stable par } u \\Leftrightarrow u(F) \\subset F",
+    isBlock: true
+  }
+];
+
 const Chapitre20ApplicationsLineaires = () => {
   const navigate = useNavigate()
 
@@ -365,12 +465,13 @@ const Chapitre20ApplicationsLineaires = () => {
           </CardContent>
         </Card>
 
-        {/* Navigation */}
-        <div className="flex justify-between">
         {/* Section Flashcards */}
         <Card className="border border-formation-orange/20 mb-10">
           <CardContent className="p-6">
-            <FlashCardQuiz />
+            <FlashCardQuiz 
+              cards={applicationsLineairesCards}
+              title="Quiz Applications linéaires"
+            />
           </CardContent>
         </Card>
 
