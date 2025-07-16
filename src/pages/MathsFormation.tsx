@@ -53,10 +53,10 @@ const MathsFormation = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background flex items-center justify-center">
       <div className="container mx-auto px-4 py-8 max-w-6xl">
         {/* Bouton retour */}
-        <div className="mb-8">
+        <div className="mb-8 text-left">
           <FormationButton
             variant="outline"
             onClick={() => navigate("/")}
