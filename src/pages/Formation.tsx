@@ -55,17 +55,6 @@ const Formation = () => {
             />
           ))}
         </div>
-
-        <div className="mt-12 text-center">
-          <div className="bg-card border border-formation-orange/20 rounded-lg p-6 max-w-2xl mx-auto">
-            <h3 className="text-lg font-semibold text-foreground mb-2">
-              💡 Managez votre matière
-            </h3>
-            <p className="text-muted-foreground text-sm">
-              Organisez votre travail grâce à nos modules et explorez de façon structurée les concepts clés de vos épreuves.
-            </p>
-          </div>
-        </div>
       </div>
     </div>
   )
