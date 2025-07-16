@@ -12,93 +12,138 @@ interface FlashCard {
   isBlock?: boolean;
 }
 
-const flashCards: FlashCard[] = [
+// Flashcards pour Applications linéaires
+const applicationsLineairesCards: FlashCard[] = [
   {
     id: 1,
-    question: "Somme d'une suite constante c de m à n",
-    answer: "\\sum_{i=m}^{n} c = (n-m+1)\\,c",
+    question: "Définition d'une application linéaire f : E → F",
+    answer: "f(x+y) = f(x) + f(y) \\text{ et } f(\\lambda x) = \\lambda f(x)",
     isBlock: true
   },
   {
     id: 2,
-    question: "Somme des premiers entiers de 1 à n",
-    answer: "\\sum_{i=1}^{n} i = \\frac{n(n+1)}{2}",
+    question: "Qu'est-ce qu'une forme linéaire ?",
+    answer: "\\text{Application de } E \\text{ dans } \\mathbb{R} \\text{, ensemble } \\mathcal{L}(E,\\mathbb{R})",
     isBlock: true
   },
   {
     id: 3,
-    question: "Somme des carrés des premiers entiers de 1 à n",
-    answer: "\\sum_{i=1}^{n} i^{2} = \\frac{n(n+1)(2n+1)}{6}",
+    question: "Qu'est-ce qu'un endomorphisme ?",
+    answer: "\\text{Application de } E \\text{ dans } E \\text{, espace } \\mathcal{L}(E)",
     isBlock: true
   },
   {
     id: 4,
-    question: "Somme des cubes des premiers entiers de 1 à n",
-    answer: "\\sum_{i=1}^{n} i^{3} = \\left[\\frac{n(n+1)}{2}\\right]^{2}",
+    question: "Qu'est-ce qu'un isomorphisme ?",
+    answer: "\\text{Application linéaire bijective de } E \\text{ vers } F",
     isBlock: true
   },
   {
     id: 5,
-    question: "Somme géométrique de 0 à n quand q = 1",
-    answer: "\\sum_{i=0}^{n} q^{i} = n+1",
+    question: "Image d'une combinaison linéaire par f",
+    answer: "f\\left(\\sum_{i=1}^{p} \\alpha_i x_i\\right) = \\sum_{i=1}^{p} \\alpha_i f(x_i)",
     isBlock: true
   },
   {
     id: 6,
-    question: "Somme géométrique de 0 à n quand q ≠ 1",
-    answer: "\\sum_{i=0}^{n} q^{i} = \\frac{1-q^{n+1}}{1-q}",
+    question: "Condition d'égalité de deux applications linéaires",
+    answer: "f = g \\Leftrightarrow \\forall i \\in \\{1,\\ldots,n\\}, f(e_i) = g(e_i)",
     isBlock: true
   },
   {
     id: 7,
-    question: "Formule générale d'une somme géométrique de m à n",
-    answer: "\\sum_{i=m}^{n} q^{i} = q^{m}\\,\\frac{1-q^{n-m+1}}{1-q}",
+    question: "Si f ∈ L(E,F) et g ∈ L(F,G), alors g∘f appartient à quel ensemble ?",
+    answer: "g \\circ f \\in \\mathcal{L}(E,G)",
     isBlock: true
   },
   {
     id: 8,
-    question: "Somme télescopique",
-    answer: "\\sum_{i=0}^{n} (u_{i+1}-u_i) = u_{n+1} - u_0",
+    question: "Inverse de la composition (g∘f)⁻¹",
+    answer: "(g \\circ f)^{-1} = f^{-1} \\circ g^{-1}",
     isBlock: true
   },
   {
     id: 9,
-    question: "Factorielle de n",
-    answer: "n! = \\prod_{i=1}^{n} i",
+    question: "Binôme de Newton fonctionnel (si u et v commutent)",
+    answer: "(u+v)^p = \\sum_{k=0}^{p} \\binom{p}{k} u^{p-k} \\circ v^k",
     isBlock: true
   },
   {
     id: 10,
-    question: "Produit d'une suite constante λ",
-    answer: "\\prod_{i=1}^{n} \\lambda = \\lambda^{n}",
+    question: "Définition de Q(u) pour un polynôme Q et un endomorphisme u",
+    answer: "Q(u) = \\sum_{k=0}^{r} q_k u^k \\text{ si } Q(x) = \\sum_{k=0}^{r} q_k x^k",
     isBlock: true
   },
   {
     id: 11,
-    question: "Produit télescopique",
-    answer: "\\prod_{i=0}^{n} \\frac{z_{i+1}}{z_{i}} = \\frac{z_{n+1}}{z_{0}}",
+    question: "Qu'est-ce qu'un polynôme annulateur de u ?",
+    answer: "\\text{Polynôme non nul } Q \\text{ tel que } Q(u) = 0",
     isBlock: true
   },
   {
     id: 12,
-    question: "Développement du carré d'une somme",
-    answer: "\\left(\\sum_{i=1}^{n} x_i\\right)^{2} = \\sum_{i=1}^{n} x_i^{2} + 2\\sum_{1\\le i<j\\le n} x_i x_j",
+    question: "Définition du noyau de f",
+    answer: "\\ker f = \\{x \\in E \\mid f(x) = 0_F\\}",
+    isBlock: true
+  },
+  {
+    id: 13,
+    question: "Condition d'injectivité d'une application linéaire",
+    answer: "f \\text{ est injectif} \\Leftrightarrow \\ker f = \\{0_E\\}",
+    isBlock: true
+  },
+  {
+    id: 14,
+    question: "Définition de l'image de f",
+    answer: "\\text{Im } f = \\{y \\in F \\mid \\exists x \\in E, y = f(x)\\}",
+    isBlock: true
+  },
+  {
+    id: 15,
+    question: "Condition de surjectivité d'une application linéaire",
+    answer: "f \\text{ est surjectif} \\Leftrightarrow \\text{Im } f = F",
+    isBlock: true
+  },
+  {
+    id: 16,
+    question: "Qu'est-ce qu'un sous-espace stable par u ?",
+    answer: "F \\text{ stable par } u \\Leftrightarrow u(F) \\subset F",
+    isBlock: true
+  },
+  {
+    id: 17,
+    question: "Compatibilité linéaire des polynômes d'endomorphismes",
+    answer: "(\\alpha Q + \\beta R)(u) = \\alpha Q(u) + \\beta R(u)",
+    isBlock: true
+  },
+  {
+    id: 18,
+    question: "Compatibilité multiplicative des polynômes d'endomorphismes",
+    answer: "(QR)(u) = Q(u) \\circ R(u)",
     isBlock: true
   }
 ];
 
-export const FlashCardQuiz: React.FC = () => {
+interface FlashCardQuizProps {
+  cards?: FlashCard[];
+  title?: string;
+}
+
+export const FlashCardQuiz: React.FC<FlashCardQuizProps> = ({ 
+  cards = applicationsLineairesCards, 
+  title = "Quiz Applications linéaires" 
+}) => {
   const [currentCard, setCurrentCard] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
   const [knownCards, setKnownCards] = useState<Set<number>>(new Set());
 
   const nextCard = () => {
-    setCurrentCard((prev) => (prev + 1) % flashCards.length);
+    setCurrentCard((prev) => (prev + 1) % cards.length);
     setIsFlipped(false);
   };
 
   const prevCard = () => {
-    setCurrentCard((prev) => (prev - 1 + flashCards.length) % flashCards.length);
+    setCurrentCard((prev) => (prev - 1 + cards.length) % cards.length);
     setIsFlipped(false);
   };
 
@@ -107,7 +152,7 @@ export const FlashCardQuiz: React.FC = () => {
   };
 
   const markAsKnown = () => {
-    setKnownCards(prev => new Set([...prev, flashCards[currentCard].id]));
+    setKnownCards(prev => new Set([...prev, cards[currentCard].id]));
     setTimeout(nextCard, 500);
   };
 
@@ -117,15 +162,15 @@ export const FlashCardQuiz: React.FC = () => {
     setIsFlipped(false);
   };
 
-  const card = flashCards[currentCard];
+  const card = cards[currentCard];
   const isKnown = knownCards.has(card.id);
-  const progress = (knownCards.size / flashCards.length) * 100;
+  const progress = (knownCards.size / cards.length) * 100;
 
   return (
     <div className="max-w-2xl mx-auto p-6">
       <div className="mb-6">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-2xl font-bold text-foreground">Quiz Sommes et Produits</h2>
+          <h2 className="text-2xl font-bold text-foreground">{title}</h2>
           <Button variant="outline" onClick={resetProgress} size="sm">
             <RotateCcw className="w-4 h-4 mr-2" />
             Recommencer
@@ -134,10 +179,10 @@ export const FlashCardQuiz: React.FC = () => {
         
         <div className="flex items-center gap-4 mb-2">
           <span className="text-sm text-muted-foreground">
-            Carte {currentCard + 1} sur {flashCards.length}
+            Carte {currentCard + 1} sur {cards.length}
           </span>
           <span className="text-sm text-muted-foreground">
-            Maîtrisées: {knownCards.size}/{flashCards.length}
+            Maîtrisées: {knownCards.size}/{cards.length}
           </span>
         </div>
         

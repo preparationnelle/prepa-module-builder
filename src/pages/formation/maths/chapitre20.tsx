@@ -5,6 +5,7 @@ import { Separator } from "@/components/ui/separator"
 import { Book, ArrowLeft, ChevronRight } from "lucide-react"
 import { useNavigate } from "react-router-dom"
 import { FormationButton } from "@/components/ui/formation-button"
+import { FlashCardQuiz } from "@/components/formations/FlashCardQuiz"
 
 interface MathSectionProps {
   title: string
@@ -361,6 +362,15 @@ const Chapitre20ApplicationsLineaires = () => {
               <li>Les polynômes d'endomorphismes permettent des calculs fonctionnels</li>
               <li>Tout endomorphisme en dimension finie admet un polynôme annulateur</li>
             </ul>
+          </CardContent>
+        </Card>
+
+        {/* Navigation */}
+        <div className="flex justify-between">
+        {/* Section Flashcards */}
+        <Card className="border border-formation-orange/20 mb-10">
+          <CardContent className="p-6">
+            <FlashCardQuiz />
           </CardContent>
         </Card>
 
