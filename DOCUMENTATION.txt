@@ -1,0 +1,368 @@
+
+================================================================================
+                        PREPA RATIONNELLE - CODE DOCUMENTATION
+================================================================================
+
+PROJECT OVERVIEW
+================================================================================
+Prepa Rationnelle is a React-based web application designed to help students 
+prepare for French business school entrance exams (concours). The platform 
+offers AI-powered tools, formations, coaching services, and interactive content.
+
+TECHNOLOGY STACK
+================================================================================
+- Frontend: React 18 with TypeScript
+- Build Tool: Vite
+- Styling: Tailwind CSS
+- UI Components: Shadcn/UI with Radix UI primitives
+- State Management: React Context API
+- Routing: React Router DOM v6
+- Backend: Supabase (PostgreSQL database, authentication, edge functions)
+- Icons: Lucide React
+- Charts: Recharts
+- Notifications: React Toastify
+- File Processing: XLSX, jsPDF
+- Analytics: PostHog
+
+PROJECT STRUCTURE
+================================================================================
+
+src/
+├── components/          # Reusable UI components
+│   ├── ui/             # Shadcn/UI base components
+│   ├── sections/       # Page sections (Hero, Features, etc.)
+│   ├── generator/      # AI generator components
+│   ├── python/         # Python-specific components
+│   ├── grammar/        # Grammar checking components
+│   ├── interview/      # Interview simulation components
+│   ├── flashcards/     # Flashcard system components
+│   ├── search/         # Search functionality
+│   └── chat/          # Chat widget components
+├── pages/              # Page components
+│   ├── formation/      # Formation-specific pages
+│   ├── generator/      # Generator tool pages
+│   ├── methodologie/   # Methodology pages
+│   ├── offres/        # Offers/services pages
+│   └── articles/      # Article pages
+├── context/            # React Context providers
+├── hooks/              # Custom React hooks
+├── data/              # Static data and configurations
+├── integrations/      # Third-party integrations
+├── lib/               # Utility libraries
+└── utils/             # Helper functions
+
+CORE FEATURES
+================================================================================
+
+1. AUTHENTICATION SYSTEM
+   - Supabase Auth integration
+   - Email/password authentication
+   - User profiles with role-based access
+   - Protected routes for premium content
+
+2. AI-POWERED GENERATORS
+   - Flashcard Generator: Creates study flashcards
+   - Answer Generator: Generates interview responses
+   - Case Study Generator: Creates business case studies
+   - Language Tools: Translation and grammar checking
+   - School Profile Generator: Generates school-specific profiles
+
+3. FORMATION MODULES
+   - Python for ECG students
+   - English language preparation
+   - German language preparation
+   - Geopolitics studies
+   - Interview preparation techniques
+
+4. INTERACTIVE LEARNING TOOLS
+   - Flashcard review system with spaced repetition
+   - Python exercise validator
+   - Grammar error tracking
+   - Progress tracking across modules
+
+5. COACHING SERVICES
+   - Individual coaching sessions
+   - Appointment booking system
+   - Personalized study plans
+
+KEY COMPONENTS
+================================================================================
+
+NAVIGATION (src/components/Navigation.tsx)
+- Main navigation bar with responsive design
+- Dynamic menu items based on user authentication
+- Mobile-friendly hamburger menu
+- Search functionality integration
+
+HERO SECTION (src/components/sections/HeroSection.tsx)
+- Landing page header with call-to-action
+- Animated elements and gradient backgrounds
+- Responsive layout for all device sizes
+
+GENERATOR COMPONENTS (src/components/generator/)
+- FlashcardGenerator: AI-powered flashcard creation
+- AnswerAutomation: Interview answer generation
+- CaseStudyGenerator: Business case study creation
+- GeopoliticsGenerator: Geopolitics content generation
+- LanguageParagraphGenerator: Language learning content
+
+PYTHON LEARNING SYSTEM (src/components/python/)
+- PythonAccessGate: Manages premium access control
+- PythonExerciseValidator: Validates Python code solutions
+- PythonFlashcardGenerator: Python-specific flashcards
+- PythonModuleQuiz: Interactive Python quizzes
+
+FLASHCARD SYSTEM (src/components/flashcards/)
+- FlashcardReviewSystem: Spaced repetition algorithm
+- FlashcardDisplay: Card presentation interface
+- ReviewAnswerButtons: User interaction buttons
+- Progress tracking and statistics
+
+ROUTING CONFIGURATION
+================================================================================
+
+Main Routes (src/config/routes.ts):
+- / : HomePage - Landing page with overview
+- /login : LoginPage - User authentication
+- /register : RegisterPage - User registration
+- /dashboard : DashboardPage - User dashboard (protected)
+- /formation : FormationPage - Training modules overview
+- /generator : GeneratorPage - AI tools overview
+- /contact : ContactPage - Contact information
+- /nos-offres : NosOffresPage - Services offered
+
+Formation Routes:
+- /formation/python-* : Python learning modules
+- /formation/anglais : English preparation
+- /formation/allemand : German preparation
+- /formation/geopolitique : Geopolitics studies
+
+Generator Routes:
+- /generator/flashcards : Flashcard generator
+- /generator/answer : Answer generator
+- /generator/case-study : Case study generator
+- /generator/* : Various specialized generators
+
+School Pages:
+- /escp, /essec, /edhec, /emlyon : Top business schools
+- /audencia, /gem, /kedge, /neoma, /skema : Other schools
+
+CONTEXT PROVIDERS
+================================================================================
+
+AuthContext (src/context/AuthContext.tsx):
+- Manages user authentication state
+- Provides login/logout functionality
+- Handles user session persistence
+- Integrates with Supabase Auth
+
+ProgressContext (src/context/ProgressContext.tsx):
+- Tracks user progress across modules
+- Manages completed activities
+- Provides progress statistics
+- Syncs with Supabase database
+
+ThemeContext (src/context/ThemeContext.tsx):
+- Manages application theme (light/dark)
+- Provides theme switching functionality
+- Persists theme preference
+
+CUSTOM HOOKS
+================================================================================
+
+useAuth (from AuthContext):
+- Access current user state
+- Login/logout functions
+- User profile management
+
+useProgress (from ProgressContext):
+- Track module completion
+- Update progress statistics
+- Access learning analytics
+
+useFlashcardReview (src/hooks/useFlashcardReview.ts):
+- Manages flashcard review sessions
+- Implements spaced repetition algorithm
+- Tracks review statistics
+
+useGenerateAnswer (src/hooks/useGenerateAnswer.ts):
+- Handles AI answer generation
+- Manages API calls to Supabase functions
+- Provides loading and error states
+
+DATABASE SCHEMA (SUPABASE)
+================================================================================
+
+Key Tables:
+- profiles: User profile information
+- flashcards: User-generated flashcards
+- flashcard_reviews: Spaced repetition data
+- progress: Module completion tracking
+- user_activity_history: User interaction logs
+- grammar_errors: Grammar mistake tracking
+- submissions: User submissions for review
+- appointments: Coaching session bookings
+
+Row Level Security (RLS):
+- All tables have RLS enabled
+- Users can only access their own data
+- Admin roles have elevated permissions
+
+SUPABASE EDGE FUNCTIONS
+================================================================================
+
+Located in supabase/functions/:
+- generate-flashcard: Creates AI flashcards
+- generate-interview-answer: Generates interview responses
+- generate-case-study: Creates business case studies
+- evaluate-theme-translation: Grammar checking
+- python-assistant: Python learning help
+- math-tutor-assistant: Mathematics tutoring
+- chat-ai-assistant: General AI chat
+
+STYLING SYSTEM
+================================================================================
+
+Tailwind CSS Configuration:
+- Custom color palette for brand consistency
+- Responsive breakpoints for mobile-first design
+- Custom animations and transitions
+- Dark mode support
+
+Design Tokens:
+- Primary colors: Blue gradient theme
+- Secondary colors: Orange accents
+- Typography: Inter font family
+- Spacing: Consistent 8px grid system
+
+UI COMPONENTS (Shadcn/UI)
+================================================================================
+
+Base Components:
+- Button, Card, Input, Textarea
+- Dialog, Sheet, Popover, Tooltip
+- Table, Tabs, Accordion, Collapsible
+- Progress, Slider, Switch, Checkbox
+- Badge, Avatar, Separator, Skeleton
+
+Form Components:
+- Form wrapper with validation
+- Input with error states
+- Select dropdowns
+- Date pickers
+- File upload components
+
+DATA MANAGEMENT
+================================================================================
+
+Static Data (src/data/):
+- pythonCommands.ts: Python reference commands
+- vocabularyData.ts: Language learning vocabulary
+- searchData.ts: Search index configuration
+- schools/: Business school information
+
+Search Functionality:
+- Global search across all content
+- Mobile-optimized search interface
+- Real-time search suggestions
+- Content filtering by type
+
+PERFORMANCE OPTIMIZATIONS
+================================================================================
+
+Code Splitting:
+- Lazy loading of route components
+- Dynamic imports for heavy components
+- Suspense boundaries for loading states
+
+Bundle Optimization:
+- Tree shaking for unused code
+- Optimized asset loading
+- Compressed image formats
+- CDN-ready deployment
+
+DEVELOPMENT WORKFLOW
+================================================================================
+
+Build System:
+- Vite for fast development builds
+- TypeScript for type safety
+- ESLint for code quality
+- PostCSS for CSS processing
+
+Environment Configuration:
+- Development and production environments
+- Environment variables for API keys
+- Supabase project configuration
+
+DEPLOYMENT
+================================================================================
+
+Hosting:
+- Static site generation ready
+- Vercel/Netlify compatible
+- CDN distribution
+- Environment variable management
+
+Database:
+- Supabase hosted PostgreSQL
+- Automatic backups
+- Real-time subscriptions
+- Edge function deployment
+
+SECURITY CONSIDERATIONS
+================================================================================
+
+Authentication:
+- JWT token-based authentication
+- Secure session management
+- Password hashing (handled by Supabase)
+- Protected API endpoints
+
+Data Protection:
+- Row Level Security (RLS) policies
+- Input validation and sanitization
+- CORS configuration
+- Rate limiting on API calls
+
+MAINTENANCE AND MONITORING
+================================================================================
+
+Analytics:
+- PostHog integration for user tracking
+- Custom events for feature usage
+- Performance monitoring
+- Error tracking and reporting
+
+Logging:
+- Console logging for development
+- Structured logging for production
+- Database query logging
+- API request/response logging
+
+FUTURE ENHANCEMENTS
+================================================================================
+
+Planned Features:
+- Mobile application (React Native)
+- Offline functionality
+- Advanced AI tutoring
+- Video content integration
+- Real-time collaboration tools
+
+Technical Improvements:
+- Progressive Web App (PWA)
+- Service worker implementation
+- Advanced caching strategies
+- Performance optimizations
+
+================================================================================
+                            END OF DOCUMENTATION
+================================================================================
+
+This documentation provides a comprehensive overview of the Prepa Rationnelle
+codebase. For specific implementation details, refer to the individual source
+files and their inline comments.
+
+Last Updated: January 2025
+Version: 2.0
